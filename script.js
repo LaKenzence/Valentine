@@ -44,8 +44,10 @@ function handleNoClick() {
 }
 
 function handleYesClick() {
-    music.play();
-    setTimeout(() => {
+    music.play().then(() => {
         window.location.href = "yes_page.html";
-    }, 300);
+    }).catch(err => {
+        console.log("Autoplay blocked", err);
+        window.location.href = "yes_page.html";
+    });
 }
