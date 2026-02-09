@@ -80,3 +80,10 @@ function handleNoClick() {
 function handleYesClick() {
     window.location.href = "yes_page.html";
 }
+const music = new Audio("music.mp3");
+music.loop = true;
+
+function handleYesClick() {
+    music.play();
+    window.location.href = "yes_page.html";
+}
