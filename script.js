@@ -1,19 +1,3 @@
-(async function checkForUpdates() {
-    const currentVersion = "1.0";
-    const versionUrl = "https://raw.githubusercontent.com/ivysone/Will-you-be-my-Valentine-/main/version.json";
-
-    try {
-        const response = await fetch(versionUrl);
-        if (!response.ok) return;
-        const data = await response.json();
-        if (currentVersion !== data.version) {
-            alert(data.updateMessage);
-        }
-    } catch (error) {
-        console.warn("Version check failed");
-    }
-})();
-
 const messages = [
     "Are you sure?",
     "¿De verdad segura?",
@@ -29,25 +13,29 @@ const messages = [
 
 let messageIndex = 0;
 
+// Musique (autorisée car lancée par un clic)
 const music = new Audio("music.mp3");
 music.loop = true;
 
 function handleNoClick() {
-    const noButton = document.querySelector('.no-button');
-    const yesButton = document.querySelector('.yes-button');
+    const noButton = document.querySelector(".no-button");
+    const yesButton = document.querySelector(".yes-button");
+
+    if (!noButton || !yesButton) return;
 
     noButton.textContent = messages[messageIndex];
     messageIndex = (messageIndex + 1) % messages.length;
 
-    const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+    const currentSize = parseFloat(getComputedStyle(yesButton).fontSize);
     yesButton.style.fontSize = `${currentSize * 1.3}px`;
 }
 
 function handleYesClick() {
-    music.play().then(() => {
-        window.location.href = "yes_page.html";
-    }).catch(err => {
-        console.log("Autoplay blocked", err);
-        window.location.href = "yes_page.html";
+    music.play().catch(() => {
+        console.log("Autoplay blocked, but click registered");
     });
+
+    setTimeout(() => {
+        window.location.href = "yes_page.html";
+    }, 300);
 }
