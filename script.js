@@ -1,18 +1,22 @@
 const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
-const container = document.querySelector(".buttons");
+
+// On utilise le body comme zone de déplacement
+const container = document.body;
 
 let panicLevel = 1;
 
 function moveNoButton() {
-  const containerRect = container.getBoundingClientRect();
+  const bodyRect = container.getBoundingClientRect();
   const btnRect = noBtn.getBoundingClientRect();
 
-  const maxX = containerRect.width - btnRect.width;
-  const maxY = containerRect.height - btnRect.height;
+  // Zone de déplacement = toute la fenêtre
+  const maxX = bodyRect.width - btnRect.width;
+  const maxY = bodyRect.height - btnRect.height;
 
-  const x = Math.random() * maxX;
-  const y = Math.random() * maxY;
+  const offset = 20; // pour ne pas coller aux bords
+  const x = Math.random() * (maxX - offset*2) + offset;
+  const y = Math.random() * (maxY - offset*2) + offset;
 
   noBtn.style.left = `${x}px`;
   noBtn.style.top = `${y}px`;
