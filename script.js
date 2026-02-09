@@ -31,11 +31,7 @@ function handleNoClick() {
 }
 
 function handleYesClick() {
-    music.play().catch(() => {
-        console.log("Autoplay blocked, but click registered");
-    });
-
-    setTimeout(() => {
-        window.location.href = "yes_page.html";
-    }, 300);
+    localStorage.setItem("playMusic", "true");
+    window.location.href = "yes_page.html";
 }
+
