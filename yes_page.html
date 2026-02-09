@@ -14,5 +14,14 @@
            <img src="mami.png" alt="Valentine Image">
         </div>
     </div>
+    <script>
+    if (localStorage.getItem("playMusic") === "true") {
+        const music = new Audio("music.mp3");
+        music.loop = true;
+        music.play().catch(() => {});
+        localStorage.removeItem("playMusic");
+    }
+</script>
+
 </body>
 </html>
