@@ -18,7 +18,10 @@ body {
 }
 
 .gif_container img {
-    width: 100%; 
-    max-width: 500px; 
-    height: auto; 
+    width: 80%;       /* L'image prend 80% de la largeur de son container */
+    max-width: 400px; /* Maximum 400px */
+    height: auto;     /* garde les proportions */
+    display: block;
+    margin: 0 auto;   /* centre l'image horizontalement */
+    border-radius: 15px; /* optionnel : coins arrondis */
 }
